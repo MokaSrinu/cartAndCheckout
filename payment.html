@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="number" placeholder="enter creditcard number" id="cardnm">
+        <input type="text" placeholder="enter your name" id="name">
+        <input type="text" placeholder="enter cvv" id="cvv">
+        <input type="submit" value="submit">
+    </form>
+</body>
+<script>
+    document.querySelector("form").addEventListener("submit",paymentfn);
+    function payment(){
+        alert("Payment Successful");
+        var obj1={
+             cardno:document.querySelector("#cardnm").value,
+             name:document.querySelector("#name").value,
+             cvv:document.querySelector("#cvv").value,
+        }
+        alert("Payment Successful");
+        localStorage.setItem("obj1");
+        alert("Payment Successful");
+        
+    }
+</script>
+</html>

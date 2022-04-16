@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cart{
+            display:grid;
+            grid-template-columns: repeat(4,1fr);
+            gap:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>cart page</h1>
+    <input type="text" placeholder="Apply promo code" id="promocode">
+    <button id="apply">apply</button>
+    <h2></h2>
+    <a href="./checkout.html">checkout</a>
+    <div id="cart">
+
+    </div>
+</body>
+<script>
+    var cartdata=JSON.parse(localStorage.getItem("cartdata"));
+    var totalsum=cartdata.reduce(function(sum,ele,index,arr){
+        return sum+Number(ele.price);
+    },0);
+    document.querySelector("#apply").addEventListener("click",applyfn);
+    function applyfn(){
+      event.preventDefault();
+      if(document.querySelector("#promocode").value=="masai30"){
+          totalsum=totalsum*(70/100);
+          document.querySelector("h2").innerText="you have "+" "+totalitems+" "+"items in your cart of total "+" "+totalsum+" "+"rupees";
+      }
+    }
+    var totalitems=cartdata.length;
+    document.querySelector("h2").innerText="you have "+" "+totalitems+" "+"items in your cart of total "+" "+totalsum+" "+"rupees";
+    cartdata.forEach(function(ele,index){
+        var box=document.createElement("div");
+        var img=document.createElement("img");
+        img.src=ele.image_url;
+        var name=document.createElement("p");
+        name.innerText=ele.name;
+        var price=document.createElement("p");
+        price.innerText=ele.price;
+        var rating=document.createElement("p");
+        rating.innerText=ele.rating;
+        var cartbutton=document.createElement("button");
+        cartbutton.innerText="remove from cart";
+        cartbutton.addEventListener("click",function(){
+         cartdata.splice(index,1);
+         localStorage.setItem("cartdata",JSON.stringify(cartdata));
+         window.location.reload();
+       });
+       box.append(img,name,price,rating,cartbutton);
+       document.querySelector("#cart").append(box);
+    });
+</script>
+</html>

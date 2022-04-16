@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text" placeholder="enter your name" id="name">
+        <input type="text" placeholder="enter city" id="city">
+        <input type="number" placeholder="enter pincode" id="pincode">
+        <input type="text" placeholder="enter state" id="state">
+        <input type="text" placeholder="enter country" id="country">
+        <input type="submit" value="submit" >
+    </form>
+</body>
+<script>
+    document.querySelector("form").addEventListener("submit",subfn);
+    function subfn(){
+        var obj={
+            name:document.querySelector("#name").value,
+            city:document.querySelector("#city").value,
+            pincode:document.querySelector("#pincode").value,
+            state:document.querySelector("#state").value,
+            country:document.querySelector("#country").value,
+
+        }
+        localStorage.setItem(JSON.stringify(obj));
+        window.location.href="./payment.html";
+    }
+</script>
+</html>
